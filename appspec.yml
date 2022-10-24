@@ -1,0 +1,16 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: <TASK_DEFINITION>
+        LoadBalancerInfo:
+            ContainerName: "gin-demo-fargate"
+            ContainerPort: 80
+        # Optional properties
+        PlatformVersion: "LATEST"
+        NetworkConfiguration:
+          AwsvpcConfiguration:
+              Subnets: ["subnet-0e849ba81930098d1","subnet-0057e6dbcf1397b8f"]
+              SecurityGroups: ["sg-0a149a10cd12d53c8"]
+              AssignPublicIp: "DISABLED"
