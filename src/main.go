@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -25,10 +26,27 @@ func main() {
 	router := gin.Default()
 	router.GET("/", getAlbums)
 	router.GET("/test2", getAlbums)
+	router.GET("/api", getResponse)
 	router.GET("/albums/:id", getAlbumByID)
 	router.POST("/albums", postAlbums)
 
 	router.Run(":80")
+}
+
+//get api response
+func getResponse(c *gin.Context) {
+	response, err := http.Get("https://holidays-jp.github.io/api/v1/date.json")
+
+	if err != nil {
+		c.IndentedJSON(http.StatusOK, "error1")
+	}
+
+	var j interface{}
+	err = json.NewDecoder(response.Body).Decode(&j)
+	if err != nil {
+		c.IndentedJSON(http.StatusOK, "error2")
+	}
+	c.IndentedJSON(http.StatusOK, j)
 }
 
 // getAlbums responds with the list of all albums as JSON.
