@@ -29,6 +29,7 @@ func main() {
 	router.GET("/test2", getAlbums)
 	router.GET("/api", getResponse)
 	router.GET("/api2", getResponse)
+	router.GET("/api3", getResponse)
 	router.GET("/albums/:id", getAlbumByID)
 	router.POST("/albums", postAlbums)
 
