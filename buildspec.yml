@@ -1,6 +1,4 @@
 version: 0.2
-env:
-  git-credential-helper: yes
 phases:
   pre_build:
     commands:
@@ -8,8 +6,7 @@ phases:
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
   build:
     commands:
-      - docker build .
-      # - docker build -t $ECR_REPOSITORY_URI .
+      - docker build -t $ECR_REPOSITORY_URI .
       - docker tag $ECR_REPOSITORY_URI:latest $ECR_REPOSITORY_URI:$IMAGE_TAG
       - docker push $ECR_REPOSITORY_URI:$IMAGE_TAG
   post_build:
