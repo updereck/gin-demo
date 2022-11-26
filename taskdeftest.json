@@ -9,7 +9,7 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/gin-demo-task-secret-manager",
+          "awslogs-group": "/ecs/gin-demo-task-secret-manager2",
           "awslogs-region": "ap-northeast-1",
           "awslogs-stream-prefix": "ecs"
         }
@@ -32,6 +32,14 @@
       "mountPoints": [],
       "workingDirectory": null,
       "secrets": [
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:460364910848:secret:gin/demo/env-XXfILR:GIN_DEMO_VALUE1::",
+          "name": "GIN_DEMO_VALUE1"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:460364910848:secret:gin/demo/env-XXfILR:GIN_DEMO_VALUE2::",
+          "name": "GIN_DEMO_VALUE2"
+        },
         {
           "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:460364910848:secret:gin/demo/env-XXfILR",
           "name": "env_variables"
@@ -73,8 +81,8 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:460364910848:task-definition/gin-demo-task-secret-manager:1",
-  "family": "gin-demo-task-secret-manager",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:460364910848:task-definition/gin-demo-task-secret-manager2:1",
+  "family": "gin-demo-task-secret-manager2",
   "requiresAttributes": [
     {
       "targetId": null,

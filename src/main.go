@@ -15,6 +15,10 @@ type album struct {
 	Artist string  `json:"artist"`
 	Price  float64 `json:"price"`
 }
+type EnvJson struct {
+	GIN_DEMO_VALUE1 string `json:"GIN_DEMO_VALUE1"`
+	GIN_DEMO_VALUE2 string `json:"GIN_DEMO_VALUE2"`
+}
 
 // albums slice to seed record album data.
 var albums = []album{
@@ -28,6 +32,9 @@ var env_v1 = os.Getenv("env_variables")
 var env_v2 = os.Getenv("GIN_DEMO_VALUE1")
 var env_v3 = os.Getenv("GIN_DEMO_VALUE2")
 
+var env_json EnvJson
+var tx = json.Unmarshal([]byte(env_v1), &env_json)
+
 var env_v4 = os.Getenv("env_param")
 var env_v5 = os.Getenv("test_ps_value1")
 
@@ -35,6 +42,7 @@ var albums1 = []album{
 	{ID: "1", Title: "Blue 11111", Artist: "John 11111", Price: 56.99},
 	{ID: "env_variables1", Title: env_v1, Artist: env_v2, Price: 0.0},
 	{ID: "env_variables2", Title: env_v1, Artist: env_v3, Price: 0.0},
+	{ID: "env_variables_json_key", Title: env_json.GIN_DEMO_VALUE1, Artist: env_json.GIN_DEMO_VALUE2, Price: 0.0},
 }
 
 var albums2 = []album{

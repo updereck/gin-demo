@@ -5,7 +5,7 @@ Resources:
       Properties:
         TaskDefinition: <TASK_DEFINITION>
         LoadBalancerInfo:
-            ContainerName: "gin-demo-ctn-02"
+            ContainerName: "gin-demo-ctn-03"
             ContainerPort: 80
         # Optional properties
         PlatformVersion: "LATEST"
